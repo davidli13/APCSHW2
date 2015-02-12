@@ -30,21 +30,24 @@ public class KnightsTour{
 	//build your knights tour here...
 	for (int r = 0; r < board.length; r++){
 	    for (int c = 0; c < board.length; c++){
+		ans += ' ';
 		ans += board[r][c];
+		if (board[r][c] < 10){
+		    ans += ' ';
+		}
 	    }
 	    ans += '\n';
 	}
-	return ans;
-	//return hide + go(0,0) + ans + "\n" + show;
+	return hide + clear + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
-	board = new int[size][size];			
+	board = new int[size][size];
     }
-
+    
     
     public void solve(){
-				
+	
     }
 
     public void solve(int startx, int starty){
@@ -54,15 +57,42 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
-				
+	if (outOfBounds(x) || outOfBounds(y)){
+	    return false;
+	}
+	if (currentMoveNumber == (board.length * board.length) + 1){
+	    return true;
+	}
+	if (board[x][y] == 0){
+	    System.out.println(this);
+	    wait(100);
+	    board[x][y] = currentMoveNumber;
+	    if (solve(x+1,y+2,currentMoveNumber + 1) ||
+		solve(x-1,y+2,currentMoveNumber + 1) ||
+		solve(x+1,y-2,currentMoveNumber + 1) ||
+		solve(x-1,y-2,currentMoveNumber + 1) ||
+		solve(x+2,y+1,currentMoveNumber + 1) ||
+		solve(x+2,y-1,currentMoveNumber + 1) ||
+		solve(x-2,y+1,currentMoveNumber + 1) ||
+		solve(x-2,y-1,currentMoveNumber + 1)){
+		return true;
+	    }
+	    board[x][y] = 0;
+	}
+	return false;
+    }
+
+    public boolean outOfBounds(int c){
+	if (c < 0 || c >= board.length){
+	    return true;
+	}
 	return false;
     }
 
     public static void main(String[]args){
 	KnightsTour k = new KnightsTour(6);
-	System.out.println(k.toString());
+	System.out.println(k.solve(0,0,1));
+	
     }
 
 }
