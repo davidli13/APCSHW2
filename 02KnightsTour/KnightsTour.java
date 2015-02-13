@@ -10,7 +10,10 @@ public class KnightsTour{
 
     //instance variable
     private int[][]board;
-
+    
+    public String name(){
+	return "li.david";
+    }
 
     //terminal specific character to move the cursor
     private String go(int x,int y){
@@ -30,15 +33,15 @@ public class KnightsTour{
 	//build your knights tour here...
 	for (int r = 0; r < board.length; r++){
 	    for (int c = 0; c < board.length; c++){
-		ans += ' ';
-		ans += board[r][c];
+		ans += board[r][c] + " ";
 		if (board[r][c] < 10){
 		    ans += ' ';
 		}
 	    }
 	    ans += '\n';
 	}
-	return hide + clear + go(0,0) + ans + "\n" + show;
+	//	return hide + clear + go(0,0) + ans + "\n" + show;
+	return ans + "\n";
     }
 
     public KnightsTour(int size){
@@ -47,26 +50,35 @@ public class KnightsTour{
     
     
     public void solve(){
-	
+	solve(0,0);
     }
 
     public void solve(int startx, int starty){
-				
+	solve(startx,starty,1);
     }
 
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
+
 	if (outOfBounds(x) || outOfBounds(y)){
 	    return false;
-	}
-	if (currentMoveNumber == (board.length * board.length) + 1){
+	}	
+	if (currentMoveNumber == board.length * board.length ){
+	    board[x][y] = currentMoveNumber;
 	    return true;
 	}
 	if (board[x][y] == 0){
-	    System.out.println(this);
-	    wait(100);
+	    if (currentMoveNumber == 16){
+	    }
+		
+	    
+	    
+	    //wait(1000);
 	    board[x][y] = currentMoveNumber;
+	    System.out.println(currentMoveNumber);
+	    System.out.println(this);
+	    
 	    if (solve(x+1,y+2,currentMoveNumber + 1) ||
 		solve(x-1,y+2,currentMoveNumber + 1) ||
 		solve(x+1,y-2,currentMoveNumber + 1) ||
@@ -90,9 +102,9 @@ public class KnightsTour{
     }
 
     public static void main(String[]args){
-	KnightsTour k = new KnightsTour(6);
-	System.out.println(k.solve(0,0,1));
-	
+	KnightsTour k = new KnightsTour(4);
+	k.solve(0,0);
+	System.out.println(k);
     }
 
 }
