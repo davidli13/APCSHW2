@@ -14,6 +14,7 @@ public class LakeMaking{
 	}
 	int r = Integer.parseInt(a);
 	String b = "";
+	i++;
 	while (i < s.length()){
 	    if ((s.substring(i,i+1)) != " "){
 		b += s.substring(i,i+1);
@@ -24,8 +25,9 @@ public class LakeMaking{
 	}
 	int c = Integer.parseInt(b);
 	data = new int[r][c];
-	for (int i = 0; i < s.length(); i++){
-	    
+	for (int j = 0; i < s.length(); i++){
+
+	}
     }    
     
     public static void main(String[]args){
