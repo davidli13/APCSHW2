@@ -64,7 +64,7 @@ public class KnightsTour{
 	if (outOfBounds(x) || outOfBounds(y)){
 	    return false;
 	}	
-	if (currentMoveNumber == board.length * board.length ){
+	if (currentMoveNumber == board.length * board.length & board[x][y] == 0){
 	    board[x][y] = currentMoveNumber;
 	    return true;
 	}
