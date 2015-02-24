@@ -1,36 +1,34 @@
+import java.io.*;
+import java.util.*;
 public class LakeMaking{
     int[][] data;
-    
-    public void loadData(String s){
-        String a = "";
-	int i = 0;
-	while (i < s.length()){
-	    if ((s.substring(i,i+1)) != " "){
-		a += s.substring(i,i+1);
-	    }else{
-		break;
+    // String stuff = "";
+    ArrayList<Integer> stuff = new ArrayList<Integer>();
+    public LakeMaking(String s){
+	try{
+	    Scanner in = new Scanner(new FileReader(s));
+	    while (in.hasNext()){
+		stuff.add(in.nextInt());
 	    }
-	    i++;
+	}catch (FileNotFoundException e){
 	}
-	int r = Integer.parseInt(a);
-	String b = "";
-	i++;
-	while (i < s.length()){
-	    if ((s.substring(i,i+1)) != " "){
-		b += s.substring(i,i+1);
-	    }else{
-		break;
-	    }
-	    i++;
-	}
-	int c = Integer.parseInt(b);
-	data = new int[r][c];
-	for (int j = 0; i < s.length(); i++){
+    }
 
+    public ArrayList<Integer> Pr(){
+	return stuff;
+    }
+
+    public void loadData(){
+	int i = 4;
+	data = new int[stuff.get(0)][stuff.get(1)];
+	while (4 < ( ){
+
+	    i++;
 	}
     }    
     
     public static void main(String[]args){
-
+	LakeMaking l = new LakeMaking("makelake.txt");
+	System.out.println(l.Pr());
     }
 }
