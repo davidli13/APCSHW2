@@ -1,0 +1,33 @@
+import java.util.*;
+public class QuickSelect{
+    public static void partition(int[]ary, int si, int ei){
+	int[]d = new int[ary.length];
+	for(int i = 0; i < ary.length; i++){
+	    if(i < si || i > ei){
+		d[i] = ary[i];
+	    }
+	}
+	int start = si;
+	int end = ei;
+	int ri = si + (int)(Math.random() *(ei - si + 1));
+	int pivot = ary[ri];
+	
+	for(int i = start; i <= end; i++){
+	    if(ary[i] < ary[pivot]){
+		ary[start] = ary[i];
+		start++;
+	    }
+	    if(ary[i] > ary[pivot]){
+		ary[end] = ary[i];
+		end--;
+	    }
+	}
+	ary[start] = ary[pivot];
+    }
+
+    public static void main(String[]args){
+	int[]test = {3,5,7,2,8,9,2,1,0,4,6};
+	QuickSelect a = new QuickSelect();
+	a.partition(test,0,test.length - 1);
+	System.out.println(Arrays.toString(a));
+}
