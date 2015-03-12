@@ -1,15 +1,19 @@
 public class MyLinkedList{
-    public LNode head,current;
+    public LNode head;
     
     public String toString(){
-	String s = "[";
-	current = head;
-	while (current.getNext() != null){
-	    s += current.getValue() + ",";
-	    current = current.getNext();
+	LNode temp = head;
+	String s = "";
+	if (temp.getNext() == null){
+	    s = "[ ";
+	}else{
+	    s = "[";
 	}
-	s += current.getValue() + "]";
-	return s;
+	while (temp != null){
+	    s += temp.getValue() + ",";
+	    temp = temp.getNext();
+	}
+	return s.substring(0,s.length() - 1) + "]";
     }
 
     public int get(int index){
@@ -20,28 +24,45 @@ public class MyLinkedList{
     }
 
     public boolean add(int value){
+	
 	return true;
     }
     public boolean add(int index, int value){
 	return true;
     }
-
+    
     public boolean remove(int index){
 	return true;
     }
-
+    
     public int size(){
 	int size = 0;
-	current = head;
-	while(current.getNext() != null){
+	temp = head;
+	while(temp.getNext() != null){
 	    size++;
-	    current = current.getNext();
+	    temp = temp.getNext();
 	}
 	return size + 1;
     }
-
     public int indexOf(int value){
-	return 0;
+	int i = 0;
+	LNode temp = head;
+	while (temp.getNext() != null){
+	    if(temp.getValue() == value){
+		return i;
+	    }
+	    temp = temp.getNext();
+	    i++;
+	}
+	return -1;
     }
 
+    public static void main(String[]args){
+	MyLinkedList l = new MyLinkedList();
+	l.add(5);
+	l.add(2);
+	l.add(13);
+	System.out.println(l.toString());
+	
+    }
 }
