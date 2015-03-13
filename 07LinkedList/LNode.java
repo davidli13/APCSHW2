@@ -21,4 +21,15 @@ public class LNode{
     public String toString(){
 	return "" + value;
     }
+
+    public LNode(){
+    }
+    public LNode(int v){
+	value = v;
+    }
+    public LNode(int v, LNode n){
+	value = v;
+	next = n;
+    }
+
 }
