@@ -1,20 +1,20 @@
-public class LNode{
-    private int value;
-    private LNode next;
+public class LNode<T>{
+    private T value;
+    private LNode<T> next;
     
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
     
-    public void setNext(LNode l){
+    public void setNext(LNode<T> l){
 	next = l;
     }
 
-    public int getValue(){
+    public T getValue(){
 	return value;
     }
 
-    public void setValue(int i){
+    public void setValue(T i){
 	value = i;
     }
 
@@ -24,10 +24,10 @@ public class LNode{
 
     public LNode(){
     }
-    public LNode(int v){
+    public LNode(T v){
 	value = v;
     }
-    public LNode(int v, LNode n){
+    public LNode(T v, LNode<T> n){
 	value = v;
 	next = n;
     }

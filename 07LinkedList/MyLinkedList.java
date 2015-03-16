@@ -8,7 +8,11 @@ public class MyLinkedList{
 	head = new LNode(value);
 	size_ = 1;
     }
-    
+
+    public String name(){
+	return "li.david";
+    }
+
     public String toString(){
 	LNode temp = head;
 	String s = "";
