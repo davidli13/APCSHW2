@@ -1,11 +1,11 @@
-public class MyLinkedList{
-    public LNode head,tail;
+public class MyLinkedList<T>{
+    public LNode<T> head,tail;
     public int size_;
     
     public MyLinkedList(){
     }
-    public MyLinkedList(int value){
-	head = new LNode(value);
+    public MyLinkedList(T value){
+	head = new LNode<T>(value);
 	size_ = 1;
     }
 
@@ -14,7 +14,7 @@ public class MyLinkedList{
     }
 
     public String toString(){
-	LNode temp = head;
+	LNode<T> temp = head;
 	String s = "";
 	if (temp.getNext() == null){
 	    s = "[ ";
@@ -28,26 +28,26 @@ public class MyLinkedList{
 	return s.substring(0,s.length() - 1) + "]";
     }
 
-    public int get(int index){
-	LNode current = head;
+    public T get(int index){
+	LNode<T> current = head;
 	while (index > 0){
 	    current = current.getNext();
 	    index--;
 	}
 	return current.getValue();
     }
-    public int get(int index, int value){
+    public int get(int index, T value){
 	return 0;
     }
 
-    public boolean add(int value){
+    public boolean add(T value){
 	if (head == null){
-	    head = new LNode(value);
+	    head = new LNode<T>(value);
 	    size_++;
 	    return true;
 	}
-	LNode temp = new LNode(value);
-        LNode current = head;
+	LNode<T> temp = new LNode<T>(value);
+        LNode<T> current = head;
         while (current.getNext() != null){
             current = current.getNext();
         }
@@ -55,20 +55,21 @@ public class MyLinkedList{
 	size_++;
 	return true;
     }
-    public boolean add(int index, int value){
-	if (head == null){
-	    head = new LNode(value);
-	    size_++;
-	    return true;
+    public boolean add(int index, T value){
+	if (index < 0 || index > size_){
+	    throw new ArrayIndexOutOfBoundsException();
 	}
-	LNode temp = new LNode(value);
-        LNode current = head;
-        while (index > 0){
+	LNode<T> temp = new LNode<T>(value);
+        LNode<T> current = head;
+
+        for (int i = 1; i < index && current.getNext() != null; i++) {
             current = current.getNext();
-	    index--;
         }
+
+        temp.setNext(current.getNext());
         current.setNext(temp);
-	size_++;
+
+        size_++;
 	return true;
     }
     
@@ -90,9 +91,9 @@ public class MyLinkedList{
 	return size + 1;
 	*/
     }
-    public int indexOf(int value){
+    public int indexOf(T value){
 	int i = 0;
-	LNode temp = head;
+	LNode<T> temp = head;
 	while (temp.getNext() != null){
 	    if(temp.getValue() == value){
 		return i;
@@ -104,13 +105,14 @@ public class MyLinkedList{
     }
 
     public static void main(String[]args){
-	MyLinkedList l = new MyLinkedList();
+	MyLinkedList<Integer> l = new MyLinkedList<Integer>();
 	l.add(6);
 	l.add(45);
 	l.add(2);
-	l.add(1,9);
+	l.add(10,99);
 	System.out.println("toString: " + l);
 	System.out.println("Get(1): " + l.get(1));
 	System.out.println("Size: " + l.size());
+	System.out.println("indexOf: " + l.indexOf(45));
     }
 }
