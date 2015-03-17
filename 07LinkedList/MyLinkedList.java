@@ -29,6 +29,9 @@ public class MyLinkedList<T>{
     }
 
     public T get(int index){
+	if (index < 0 || index > size_){
+	    throw new ArrayIndexOutOfBoundsException();
+	}
 	LNode<T> current = head;
 	while (index > 0){
 	    current = current.getNext();
@@ -36,8 +39,17 @@ public class MyLinkedList<T>{
 	}
 	return current.getValue();
     }
-    public int get(int index, T value){
-	return 0;
+
+    public void set(int index, T value){
+	if (index < 0 || index > size_){
+	    throw new ArrayIndexOutOfBoundsException();
+	}
+	LNode<T> current = head;
+        while (index > 0){
+            current = current.getNext();
+	    index--;
+        }
+        current.setValue(value);
     }
 
     public boolean add(T value){
@@ -74,7 +86,10 @@ public class MyLinkedList<T>{
     }
     
     public boolean remove(int index){
-
+	if (index < 0 || index > size_){
+	    throw new ArrayIndexOutOfBoundsException();
+	}
+	
 	size_--;
 	return true;
     }
@@ -109,10 +124,11 @@ public class MyLinkedList<T>{
 	l.add(6);
 	l.add(45);
 	l.add(2);
-	l.add(10,99);
+	l.add(1,99);
+	l.set(0,56565);
 	System.out.println("toString: " + l);
-	System.out.println("Get(1): " + l.get(1));
+	System.out.println("Get(2): " + l.get(2));
 	System.out.println("Size: " + l.size());
-	System.out.println("indexOf: " + l.indexOf(45));
+	System.out.println("indexOf: " + l.indexOf(60));
     }
 }
