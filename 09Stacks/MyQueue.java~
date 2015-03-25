@@ -13,7 +13,7 @@ public class MyQueue<T>{
 	list.add(a);
     }
 
-    public boolean dequeue(){
+    public T dequeue(){
 	if (list.size() == 0){
 	    throw new IndexOutOfBoundsException();
 	}
