@@ -75,12 +75,12 @@ public class Maze{
 
     public String toString(){
 	//do not do the funky character codes
-   
+	return "";
     }
 
     public String toString(boolean animate){
 	//do the funky character codes when animate is true
-	
+	return "";
     }
     
 
@@ -89,7 +89,7 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     public boolean solveBFS(boolean animate){
-
+	return false;
     }
 
     /**Solve the maze using a frontier in a DFS manner. 
@@ -97,7 +97,7 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     public boolean solveDFS(boolean animate){  
-
+	return false;
     }
     
     public boolean solveBFS(){
@@ -114,19 +114,20 @@ public class Maze{
 	    //mark the floor with @
 	    maze[x][y] = '@';
 	    //recursion ho!!
-	    if( solve(x + 1,y) ||
+	    /*
+	      if( solve(x + 1,y) ||
 		solve(x,y + 1) ||
 		solve(x - 1,y) ||
 		solve(x,y - 1)){
 		return true;
-	    }
+		}
+	    */
 	    //replace the @ with a .
 	    maze[x][y] = '.';
 	}
 	return false;//by default the maze didn't get solved
-	return solveDFS(false);
+	//return solveDFS(false);	
     }
-
     /**return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
      *Precondition :  solveBFS() OR solveDFS() has already been called
@@ -134,6 +135,7 @@ public class Maze{
      *Postcondition:  the correct solution is in the returned array
      */
     public int[] solutionCoordinates(){
-	
+	int[] ans = new int[1];
+	return ans;
     }  
 }
