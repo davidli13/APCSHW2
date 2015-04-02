@@ -16,15 +16,15 @@ public class Maze{
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }  
-
+    
     private String color(int foreground,int background){
 	return ("\033[0;" + foreground + ";" + background + "m");
     }
-
+    
     public void clearTerminal(){
 	System.out.println(clear);
     }
-
+    
     public void wait(int millis){
 	try {
 	    Thread.sleep(millis);
@@ -33,7 +33,6 @@ public class Maze{
 	}
     }
 
-    
     /** Same constructor as before...*/
     public Maze(String filename){
 	startx = -1;
@@ -42,7 +41,7 @@ public class Maze{
 	String ans = "";
 	try{
 	    Scanner in = new Scanner(new File(filename));
-
+	    
 	    //keep reading next line
 	    while(in.hasNext()){
 		String line = in.nextLine();
@@ -60,7 +59,7 @@ public class Maze{
 	    e.printStackTrace();
 	    System.exit(0);
 	}
-
+	
 	//copy from the single string to a 2D array
 	maze = new char[maxx][maxy];
 	for(int i = 0; i < ans.length(); i++){
@@ -72,18 +71,18 @@ public class Maze{
 	    }
 	}
     }
-
+    
     public String toString(){
 	//do not do the funky character codes
 	return "";
     }
-
+    
     public String toString(boolean animate){
 	//do the funky character codes when animate is true
 	return "";
     }
     
-
+    
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
@@ -91,7 +90,7 @@ public class Maze{
     public boolean solveBFS(boolean animate){
 	return false;
     }
-
+    
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
@@ -101,7 +100,7 @@ public class Maze{
     }
     
     public boolean solveBFS(){
-
+	
 	return solveBFS(false);
     }
     public boolean solveDFS(){
@@ -116,11 +115,11 @@ public class Maze{
 	    //recursion ho!!
 	    /*
 	      if( solve(x + 1,y) ||
-		solve(x,y + 1) ||
-		solve(x - 1,y) ||
-		solve(x,y - 1)){
-		return true;
-		}
+	      solve(x,y + 1) ||
+	      solve(x - 1,y) ||
+	      solve(x,y - 1)){
+	      return true;
+	      }
 	    */
 	    //replace the @ with a .
 	    maze[x][y] = '.';
@@ -128,7 +127,8 @@ public class Maze{
 	return false;//by default the maze didn't get solved
 	//return solveDFS(false);	
     }
-    /**return an array [x1,y1,x2,y2,x3,y3...]
+    
+    /*return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
      *Precondition :  solveBFS() OR solveDFS() has already been called
      (otherwise an empty array is returned)
