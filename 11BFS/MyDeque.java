@@ -35,27 +35,6 @@ public class MyDeque<T>{
 	}
     }
 
-    public void add(Object o, int i){
-	if (size == ary.length){
-	    ary = resize(ary);
-	}	
-    }
-
-    
-    public void removeSmallest(){
-	int i = 1;
-	int s = ary[0];
-	while (i < ary.length){
-	    if (ary[i] < s){
-		s = ary[1];
-	    }
-	    i++;
-	}
-    }
-
-    public void removeLargest(){
-    }
-
     public Object[] resize(Object[] ary){
 	Object[] clone = new Object[ary.length*2];
 	for (int i = 1;i<ary.length-head;i++){
@@ -103,5 +82,4 @@ public class MyDeque<T>{
 	}
 	return result;
     }	
-
 }
