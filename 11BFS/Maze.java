@@ -6,8 +6,10 @@ public class Maze{
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
     private static final int DFS = 1;
-    private static final int BFS = 0;    
-    
+    private static final int BFS = 2;  
+    private static final int Best = 3;  
+    private static final int AStar = 4;
+  
     private char[][] maze;
     private int maxx,maxy;
     private int startx,starty;
@@ -74,12 +76,27 @@ public class Maze{
     
     public String toString(){
 	//do not do the funky character codes
-	return "";
+	String ans = "";
+	for (char[] i : maze) {
+	    for (char j : i) {
+		ans += j;
+	    }
+	    ans += "\n";
+	}
+	return ans;
     }
     
     public String toString(boolean animate){
 	//do the funky character codes when animate is true
-	return "";
+	if (animate){
+	    try {
+		Thread.sleep(100);
+	    }
+	    catch (InterruptedException e){
+	    }
+	    return clear + hide + toString();
+	}
+	return toString();
     }
     
     
@@ -103,17 +120,33 @@ public class Maze{
 	
 	return solveBFS(false);
     }
-    public boolean solveDFS(){
+    public void solveDFS(){
+	toString();
 	int x = startx;
 	int y = starty;
 	if(maze[x][y] == 'E'){
-	    return true;
 	}
-	maze[x][y] = '.';
-	}
-	return false;//by default the maze didn't get solved
+	maze[x][y] = '.';   
+	//by default the maze didn't get solved  
 	//return solveDFS(false);	
     }
+
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+    
+    public boolean solveBest(boolean animate){
+	return false;
+    }
+
+    public boolean solveAStar(){
+	return solveAStar(false);
+    }
+
+    public boolean solveAStar(boolean animate){
+	return false;
+    }
+
     /*return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
      *Precondition :  solveBFS() OR solveDFS() has already been called
@@ -124,4 +157,9 @@ public class Maze{
 	int[] ans = new int[1];
 	return ans;
     }  
+    public static void main(String[] args) {
+	Maze m = new Maze("data3.dat");
+	m.solveDFS(true);
+	m.toString();
+    }
 }
